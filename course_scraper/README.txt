@@ -1,0 +1,1 @@
+The web scraping program uses Python 3.5.2, Selenium 2.53.6, and Firefox 47.0.1
