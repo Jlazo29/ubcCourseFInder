@@ -1,3 +1,13 @@
+'''
+Created: Jul 23, 2016
+Last Edited: Feb 22, 2017
+
+@author: jes97210
+
+This file handles all the scraping with Selenium. Fairly simple, since the ubc
+site for courses is also very simple.
+'''
+
 from selenium import webdriver
 import sys
 import time
@@ -20,12 +30,21 @@ def init_driver():
     driver.wait = WebDriverWait(driver, 50)
     return driver
 
+def scrape_CPSC(driver):
+    text_inside = driver.find_element_by_tag_name("dl").text
+    print(text_inside)
+    return text_inside
+
 def go_to_CPSC(driver):
     driver.get('http://www.calendar.ubc.ca/vancouver/courses.cfm?page=code&institution=12&code=CPSC')
 
-if __name__ == "__main__":
+def main():
     driver = init_driver()
     go_to_CPSC(driver)
+    contained = scrape_CPSC(driver)
     time.sleep(10)
     driver.quit()
-    
+    return contained
+
+if __name__ == "__main__":
+    main()
